@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Identity</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: linear-gradient(135deg, #1a0a1a, #2d0a2d, #1a0a1a);
+      color: #ffb6c1;
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      background: rgba(255, 182, 193, 0.08);
+      border: 2px solid #ff69b4;
+      border-radius: 24px;
+      padding: 40px 30px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      color: #fff;
+      text-shadow: 0 0 15px #ff69b4;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .section {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    
+    .section-title {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      color: #ff9ecb;
+      letter-spacing: 1px;
+    }
+    
+    #profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #ff69b4;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      display: block;
+      background: #2a0a2a;
+    }
+    
+    select, input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1.05rem;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 8px;
+    }
+    
+    select option {
+      background: #2a0a2a;
+    }
+    
+    .name-preview {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 15px 0 5px;
+    }
+    
+    .handle-preview {
+      font-size: 1.1rem;
+      color: #ff9ecb;
+      margin-bottom: 25px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    
+    button {
+      padding: 16px 28px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    
+    .btn-accept {
+      background: linear-gradient(90deg, #ff69b4, #ff1493);
+      color: white;
+      flex: 1;
+      min-width: 160px;
+    }
+    
+    .btn-random {
+      background: transparent;
+      border: 2px solid #ff69b4;
+      color: #ffb6c1;
+    }
+    
+    .btn-tribute {
+      background: linear-gradient(90deg, #00c853, #00e676);
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 1.15rem;
+      display: none; /* Hidden by default */
+    }
+    
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    }
+    
+    .btn-tribute:hover {
+      box-shadow: 0 0 25px rgba(0, 230, 118, 0.6);
+    }
+    
+    .footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    /* Tribute modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: #1a0a1a;
+      border: 2px solid #ff69b4;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+    }
+    
+    .modal-content h2 {
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .pay-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+    }
+    
+    .cashapp { background: #00c853; }
+    .paypal  { background: #0070ba; }
+    .throne  { background: #ff69b4; }
+    
+    .close-modal {
+      margin-top: 15px;
+      background: transparent;
+      border: 1px solid #ff69b4;
+      color: #ffb6c1;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Setup Identity</h1>
+    <p class="subtitle">Choose your fate.<br>Design your new identity for Goddess <span id="goddess-name">YOURNAME</span>.</p>
+    
+    <div class="section">
+      <div class="section-title">PROFILE PICTURE</div>
+      <img id="profile-pic" src="https://i.imgur.com/8Km9tLL.png" alt="Profile">
+    </div>
+    
+    <div class="section">
+      <div class="section-title">ASSIGNED ROLE</div>
+      <select id="role-select">
+        <option>Puppy</option>
+        <option>Simp</option>
+        <option>Sissy</option>
+        <option>Slave</option>
+        <option>Wallet</option>
+        <option>Good Boy</option>
+        <option>Kitten</option>
+        <option>Drained Pet</option>
+      </select>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">YOUR NEW NAME</div>
+      <input type="text" id="display-name" value="Alice's Puppy 🐾 #000">
+      <input type="text" id="username" value="@aliceslave">
+    </div>
+    
+    <div class="name-preview" id="preview-name">Alice's Puppy 🐾 #000</div>
+    <div class="handle-preview" id="preview-handle">@aliceslave</div>
+    
+    <div class="buttons">
+      <button class="btn-random" onclick="randomProfile()">Random Profile</button>
+      <button class="btn-accept" onclick="acceptIdentity()">Accept Identity</button>
+    </div>
+
+    <!-- Tribute button - only appears after Accept -->
+    <button class="btn-tribute" id="tributeBtn" onclick="openTribute()">💸 Send Tribute</button>
+    
+    <p class="footer">Once accepted, your old identity is gone forever.</p>
+  </div>
+
+  <!-- Tribute Modal -->
+  <div class="modal" id="tributeModal">
+    <div class="modal-content">
+      <h2>Send Tribute to Goddess</h2>
+      
+      <!-- REPLACE THESE 3 LINKS WITH YOUR REAL ONES -->
+      <a href="https://cash.app/$YourCashTag" target="_blank" class="pay-btn cashapp">CashApp</a>
+      <a href="https://paypal.me/YourPayPal" target="_blank" class="pay-btn paypal">PayPal</a>
+      <a href="https://throne.com/yourusername" target="_blank" class="pay-btn throne">Throne Wishlist</a>
+      
+      <button class="close-modal" onclick="closeTribute()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // ====================== CUSTOMIZE HERE ======================
+    const GODDESS_NAME = "YOURNAME";          // ← Change this
+    const DEFAULT_PREFIX = "Alice's";         // ← Change this
+    const DEFAULT_EMOJI = "🐾";               // ← Change this
+    // ===========================================================
+
+    document.getElementById("goddess-name").textContent = GODDESS_NAME;
+
+    const roles = ["Puppy", "Simp", "Sissy", "Slave", "Wallet", "Good Boy", "Kitten", "Drained Pet"];
+    const numbers = Array.from({length: 200}, (_, i) => String(i).padStart(3, "0"));
+
+    function updatePreview() {
+      document.getElementById("preview-name").textContent = document.getElementById("display-name").value;
+      document.getElementById("preview-handle").textContent = document.getElementById("username").value;
+    }
+
+    document.getElementById("display-name").addEventListener("input", updatePreview);
+    document.getElementById("username").addEventListener("input", updatePreview);
+    
+    document.getElementById("role-select").addEventListener("change", function() {
+      const role = this.value;
+      document.getElementById("display-name").value = `${DEFAULT_PREFIX} ${role} ${DEFAULT_EMOJI} #${randomNumber()}`;
+      document.getElementById("username").value = `@${GODDESS_NAME.toLowerCase()}slave`;
+      updatePreview();
+    });
+
+    function randomNumber() {
+      return numbers[Math.floor(Math.random() * numbers.length)];
+    }
+
+    function randomProfile() {
+      const role = roles[Math.floor(Math.random() * roles.length)];
+      const num = randomNumber();
+      document.getElementById("role-select").value = role;
+      document.getElementById("display-name").value = `${DEFAULT_PREFIX} ${role} ${DEFAULT_EMOJI} #${num}`;
+      document.getElementById("username").value = `@${GODDESS_NAME.toLowerCase()}${role.toLowerCase()}${num}`;
+      updatePreview();
+    }
+
+    function acceptIdentity() {
+      const name = document.getElementById("display-name").value;
+      alert(`Identity accepted!\n\nYou are now:\n${name}\n\nYour old self is gone.\n\nNow show your devotion...`);
+      
+      // Show the tribute button after accepting
+      document.getElementById("tributeBtn").style.display = "block";
+    }
+
+    function openTribute() {
+      document.getElementById("tributeModal").style.display = "flex";
+    }
+
+    function closeTribute() {
+      document.getElementById("tributeModal").style.display = "none";
+    }
+
+    // Close modal when clicking outside
+    document.getElementById("tributeModal").addEventListener("click", function(e) {
+      if (e.target === this) closeTribute();
+    });
+
+    // Generate one random profile on load
+    randomProfile();
+  </script>
+</body>
+</html>
