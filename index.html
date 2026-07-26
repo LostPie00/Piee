@@ -7,7 +7,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
     
     body {
       background: linear-gradient(135deg, #1a0a1a, #2d0a2d, #1a0a1a);
@@ -17,14 +25,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 15px;
     }
     
     .container {
       background: rgba(255, 182, 193, 0.08);
       border: 2px solid #ff69b4;
       border-radius: 24px;
-      padding: 40px 30px;
+      padding: 30px 20px;
       max-width: 480px;
       width: 100%;
       text-align: center;
@@ -32,37 +40,38 @@
     }
     
     h1 {
-      font-size: 2.2rem;
+      font-size: 1.9rem;
       margin-bottom: 8px;
       color: #fff;
       text-shadow: 0 0 15px #ff69b4;
     }
     
     .subtitle {
-      font-size: 1.1rem;
-      margin-bottom: 25px;
+      font-size: 1rem;
+      margin-bottom: 22px;
       opacity: 0.9;
+      line-height: 1.4;
     }
     
     .section {
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       text-align: left;
     }
     
     .section-title {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       margin-bottom: 10px;
       color: #ff9ecb;
       letter-spacing: 1px;
     }
     
     #profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 4px solid #ff69b4;
       object-fit: cover;
-      margin: 0 auto 15px;
+      margin: 0 auto 12px;
       display: block;
       background: #2a0a2a;
     }
@@ -70,14 +79,14 @@
     .pic-choices {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     
     .pic-choices img {
-      width: 60px;
-      height: 60px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: 3px solid transparent;
       object-fit: cover;
@@ -93,12 +102,12 @@
     
     select, input {
       width: 100%;
-      padding: 14px;
+      padding: 13px 14px;
       border: none;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-family: inherit;
       outline: none;
       margin-bottom: 8px;
@@ -109,31 +118,33 @@
     }
     
     .name-preview {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #fff;
-      margin: 15px 0 5px;
+      margin: 12px 0 4px;
+      word-break: break-word;
     }
     
     .handle-preview {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #ff9ecb;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+      word-break: break-word;
     }
     
     .buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
     
     button {
-      padding: 16px 28px;
+      padding: 14px 22px;
       border: none;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
@@ -144,7 +155,7 @@
       background: linear-gradient(90deg, #ff69b4, #ff1493);
       color: white;
       flex: 1;
-      min-width: 160px;
+      min-width: 140px;
     }
     
     .btn-random {
@@ -157,13 +168,13 @@
       background: linear-gradient(90deg, #00c853, #00e676);
       color: white;
       width: 100%;
-      margin-top: 10px;
-      font-size: 1.15rem;
+      margin-top: 8px;
+      font-size: 1.1rem;
       display: none;
     }
     
     button:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
     }
     
@@ -172,8 +183,8 @@
     }
     
     .footer {
-      margin-top: 25px;
-      font-size: 0.85rem;
+      margin-top: 20px;
+      font-size: 0.8rem;
       opacity: 0.6;
     }
 
@@ -186,21 +197,23 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      padding: 15px;
     }
     
     .modal-content {
       background: #1a0a1a;
       border: 2px solid #ff69b4;
       border-radius: 20px;
-      padding: 30px;
+      padding: 25px 20px;
       max-width: 360px;
-      width: 90%;
+      width: 100%;
       text-align: center;
     }
     
     .modal-content h2 {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: #fff;
+      font-size: 1.3rem;
     }
     
     .pay-btn {
@@ -212,28 +225,78 @@
       font-weight: 700;
       text-decoration: none;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
     
-    .cashapp { background: #00c853; }
     .paypal  { background: #0070ba; }
     .throne  { background: #ff69b4; }
     
     .close-modal {
-      margin-top: 15px;
+      margin-top: 12px;
       background: transparent;
       border: 1px solid #ff69b4;
       color: #ffb6c1;
       padding: 10px 20px;
       border-radius: 30px;
       cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    /* ========== MOBILE IMPROVEMENTS ========== */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+      }
+      
+      .container {
+        padding: 25px 16px;
+        border-radius: 20px;
+      }
+      
+      h1 {
+        font-size: 1.7rem;
+      }
+      
+      .subtitle {
+        font-size: 0.95rem;
+      }
+      
+      #profile-pic {
+        width: 110px;
+        height: 110px;
+      }
+      
+      .pic-choices img {
+        width: 48px;
+        height: 48px;
+      }
+      
+      .name-preview {
+        font-size: 1.15rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+      }
+      
+      .btn-accept,
+      .btn-random {
+        width: 100%;
+        min-width: unset;
+      }
+      
+      .modal-content {
+        padding: 22px 16px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Setup Identity</h1>
-    <p class="subtitle">Choose your fate.<br>Design your new identity for Pie <span id="Pie´s-name">Pie</span>.</p>
+    <p class="subtitle">Choose your fate.<br>Design your new identity for Mommy <span id="pie´s-name">YOURNAME</span>.</p>
     
     <div class="section">
       <div class="section-title">PROFILE PICTURE</div>
@@ -264,14 +327,13 @@
     </div>
     
     <div class="section">
-      <div class="section-title">Pie</div>
+      <div class="section-title">YOUR NEW NAME</div>
       <input type="text" id="display-name" value="Pie's Puppy 🐾 #000">
-      <input type="text" id="username" value="@aliceslave">
+      <input type="text" id="username" value="@pieslave">
     </div>
     
     <div class="name-preview" id="preview-name">Pie's Puppy 🐾 #000</div>
-    <div class="handle-preview" id="preview-handle">@naughtyPieMommy
-</div>
+    <div class="handle-preview" id="preview-handle">@pieslave</div>
     
     <div class="buttons">
       <button class="btn-random" onclick="randomProfile()">Random Profile</button>
@@ -285,9 +347,7 @@
 
   <div class="modal" id="tributeModal">
     <div class="modal-content">
-      <h2>Send Tribute to Pie </h2>
-      
-      <!-- REPLACE THESE WITH YOUR REAL LINKS -->
+      <h2>Send Tribute to Mommy</h2>
       
       <a href="https://paypal.me/HoneyPiee22" target="_blank" class="pay-btn paypal">PayPal</a>
       <a href="https://throne.com/naughtymommypie" target="_blank" class="pay-btn throne">Throne Wishlist</a>
@@ -298,12 +358,12 @@
 
   <script>
     // ====================== CUSTOMIZE HERE ======================
-    const GODDESS_NAME = "Pie";          // ← Change this
-    const DEFAULT_PREFIX = "Pie's";         // ← Change this
-    const DEFAULT_EMOJI = "🐾";               // ← Change this
+    const Pie´s_NAME = "Pie";          // ← Change this
+    const DEFAULT_PREFIX = "Pie's";
+    const DEFAULT_EMOJI = "🐾";
     // ===========================================================
 
-    document.getElementById("pie´s-name").textContent = Pie´s_NAME;
+    document.getElementById("pie´s-name").textContent = PIE´S_NAME;
 
     const roles = ["Puppy", "Simp", "Sissy", "Slave", "Wallet", "Good Boy", "Kitten", "Drained Pet"];
     const numbers = Array.from({length: 200}, (_, i) => String(i).padStart(3, "0"));
@@ -314,7 +374,6 @@
       img.classList.add('selected');
     }
 
-    // Select first picture by default
     document.querySelector('.pic-choices img').classList.add('selected');
 
     function updatePreview() {
@@ -341,7 +400,7 @@
       const num = randomNumber();
       document.getElementById("role-select").value = role;
       document.getElementById("display-name").value = `${DEFAULT_PREFIX} ${role} ${DEFAULT_EMOJI} #${num}`;
-      document.getElementById("username").value = `@${Pie´S_NAME.toLowerCase()}${role.toLowerCase()}${num}`;
+      document.getElementById("username").value = `@${PIE´S_NAME.toLowerCase()}${role.toLowerCase()}${num}`;
       updatePreview();
     }
 
