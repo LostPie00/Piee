@@ -40,12 +40,12 @@
     
     .subtitle {
       font-size: 1.1rem;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       opacity: 0.9;
     }
     
     .section {
-      margin-bottom: 25px;
+      margin-bottom: 22px;
       text-align: left;
     }
     
@@ -57,14 +57,38 @@
     }
     
     #profile-pic {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       border: 4px solid #ff69b4;
       object-fit: cover;
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
       display: block;
       background: #2a0a2a;
+    }
+    
+    .pic-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    
+    .pic-choices img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      object-fit: cover;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    
+    .pic-choices img:hover,
+    .pic-choices img.selected {
+      border-color: #ff69b4;
+      transform: scale(1.1);
     }
     
     select, input {
@@ -135,7 +159,7 @@
       width: 100%;
       margin-top: 10px;
       font-size: 1.15rem;
-      display: none; /* Hidden by default */
+      display: none;
     }
     
     button:hover {
@@ -153,7 +177,6 @@
       opacity: 0.6;
     }
 
-    /* Tribute modal */
     .modal {
       display: none;
       position: fixed;
@@ -210,11 +233,20 @@
 <body>
   <div class="container">
     <h1>Setup Identity</h1>
-    <p class="subtitle">Choose your fate.<br>Design your new identity for Goddess <span id="goddess-name">YOURNAME</span>.</p>
+    <p class="subtitle">Choose your fate.<br>Design your new identity for Pie <span id="Pie´s-name">YOURNAME</span>.</p>
     
     <div class="section">
       <div class="section-title">PROFILE PICTURE</div>
-      <img id="profile-pic" src="https://i.imgur.com/8Km9tLL.png" alt="Profile">
+      <img id="profile-pic" src="https://i.imgur.com/tTOXkmj.jpg" alt="Profile">
+      
+      <div class="pic-choices" id="picChoices">
+        <img src="https://i.imgur.com/tTOXkmj.jpg" onclick="selectPic(this)">
+        <img src="https://i.imgur.com/VjlY5vs.jpg" onclick="selectPic(this)">
+        <img src="https://i.imgur.com/QQS3WF4.jpg" onclick="selectPic(this)">
+        <img src="https://i.imgur.com/zvSV3Jq.jpg" onclick="selectPic(this)">
+        <img src="https://i.imgur.com/NbgKcXJ.jpg" onclick="selectPic(this)">
+        <img src="https://i.imgur.com/lAPLiNH.jpg" onclick="selectPic(this)">
+      </div>
     </div>
     
     <div class="section">
@@ -234,31 +266,29 @@
     <div class="section">
       <div class="section-title">YOUR NEW NAME</div>
       <input type="text" id="display-name" value="Pie's Puppy 🐾 #000">
-      <input type="text" id="username" value="@naughtyPieMommy
-">
+      <input type="text" id="username" value="@aliceslave">
     </div>
     
     <div class="name-preview" id="preview-name">Pie's Puppy 🐾 #000</div>
-    <div class="handle-preview" id="preview-handle">@naughtyPieMommy</div>
+    <div class="handle-preview" id="preview-handle">@naughtyPieMommy
+</div>
     
     <div class="buttons">
       <button class="btn-random" onclick="randomProfile()">Random Profile</button>
       <button class="btn-accept" onclick="acceptIdentity()">Accept Identity</button>
     </div>
 
-    <!-- Tribute button - only appears after Accept -->
     <button class="btn-tribute" id="tributeBtn" onclick="openTribute()">💸 Send Tribute</button>
     
     <p class="footer">Once accepted, your old identity is gone forever.</p>
   </div>
 
-  <!-- Tribute Modal -->
   <div class="modal" id="tributeModal">
     <div class="modal-content">
-      <h2>Send Tribute to Mommy</h2>
+      <h2>Send Tribute to Pie </h2>
       
-      <!-- REPLACE THESE 3 LINKS WITH YOUR REAL ONES -->
-    
+      <!-- REPLACE THESE WITH YOUR REAL LINKS -->
+      
       <a href="https://paypal.me/HoneyPiee22" target="_blank" class="pay-btn paypal">PayPal</a>
       <a href="https://throne.com/naughtymommypie" target="_blank" class="pay-btn throne">Throne Wishlist</a>
       
@@ -273,10 +303,19 @@
     const DEFAULT_EMOJI = "🐾";               // ← Change this
     // ===========================================================
 
-    document.getElementById("goddess-name").textContent = Pie´s_NAME;
+    document.getElementById("pie´s-name").textContent = Pie´s_NAME;
 
     const roles = ["Puppy", "Simp", "Sissy", "Slave", "Wallet", "Good Boy", "Kitten", "Drained Pet"];
     const numbers = Array.from({length: 200}, (_, i) => String(i).padStart(3, "0"));
+
+    function selectPic(img) {
+      document.getElementById("profile-pic").src = img.src;
+      document.querySelectorAll('.pic-choices img').forEach(i => i.classList.remove('selected'));
+      img.classList.add('selected');
+    }
+
+    // Select first picture by default
+    document.querySelector('.pic-choices img').classList.add('selected');
 
     function updatePreview() {
       document.getElementById("preview-name").textContent = document.getElementById("display-name").value;
@@ -289,7 +328,7 @@
     document.getElementById("role-select").addEventListener("change", function() {
       const role = this.value;
       document.getElementById("display-name").value = `${DEFAULT_PREFIX} ${role} ${DEFAULT_EMOJI} #${randomNumber()}`;
-      document.getElementById("username").value = `@${Pie´s_NAME.toLowerCase()}slave`;
+      document.getElementById("username").value = `@${PIE´S_NAME.toLowerCase()}slave`;
       updatePreview();
     });
 
@@ -302,15 +341,13 @@
       const num = randomNumber();
       document.getElementById("role-select").value = role;
       document.getElementById("display-name").value = `${DEFAULT_PREFIX} ${role} ${DEFAULT_EMOJI} #${num}`;
-      document.getElementById("username").value = `@${Pie´s_NAME.toLowerCase()}${role.toLowerCase()}${num}`;
+      document.getElementById("username").value = `@${Pie´S_NAME.toLowerCase()}${role.toLowerCase()}${num}`;
       updatePreview();
     }
 
     function acceptIdentity() {
       const name = document.getElementById("display-name").value;
       alert(`Identity accepted!\n\nYou are now:\n${name}\n\nYour old self is gone.\n\nNow show your devotion...`);
-      
-      // Show the tribute button after accepting
       document.getElementById("tributeBtn").style.display = "block";
     }
 
@@ -322,12 +359,10 @@
       document.getElementById("tributeModal").style.display = "none";
     }
 
-    // Close modal when clicking outside
     document.getElementById("tributeModal").addEventListener("click", function(e) {
       if (e.target === this) closeTribute();
     });
 
-    // Generate one random profile on load
     randomProfile();
   </script>
 </body>
